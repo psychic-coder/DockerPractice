@@ -1,0 +1,30 @@
+services:
+  mysqldb:
+    image: "mysql:latest"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=userinfo
+    container_name: mysqldb
+    networks:  #we gave name to our network
+      - my-networks
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      start_period: 30s
+
+  myjs:
+    build: ./d
+    container_name: myReactjs
+    networks:
+      - my-networks #we gave name to our network
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    ports:
+      - "5174:5173"
+    stdin_open: true
+    tty: true
+
+networks:
+  my-networks:

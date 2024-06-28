@@ -172,3 +172,36 @@ and after creating the image after the above changes we habe to create a contain
 
 
 //Docker Compose -->its a configuration file to manage multiple containers running on same machine...
+
+to run the docker compose file we write the below code
+
+"docker-compose up"--->we started the compose file and "docker-compose" this is the name of the compose file
+"docker-compose down"--->"docker-compose" this is used to stop the compose file
+"docker-compose up -d"-->to start the docker compose in detached mode
+
+
+////docker compose for multiple containers
+docker-compose-->the goal is to set up a multi-container application with a MySQL database and a ReactJS web application. The configuration ensures that the web application (myjs) only starts after the database (mysqldb) is fully operational.
+
+![Alt text](<Screenshot 2024-06-28 at 7.06.07 PM.png>)
+
+///////////
+
+we can even run the services present in the docker-compose file one by one -->
+"docker-compose run -d myjs"  ---->" myjs " is the name of the service
+
+//all the services present in the docker-compose file are part of a network
+
+![Alt text](<Screenshot 2024-06-28 at 7.29.07 PM.png>)
+
+////////////
+
+ "docker-compose down -v"-->this command stops the docker-compose and lowers down the network
+
+ //////////
+
+ // we can even bind the file in our container to the file in our local system , in this case we used the " volumes: " ,, we binded the server.txt file in our local repo to the server.txt file in the myapp repository
+
+//////
+ ![Alt text](<Screenshot 2024-06-28 at 7.34.08 PM.png>)
+//////
