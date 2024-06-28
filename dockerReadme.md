@@ -81,3 +81,94 @@ docker pull nginx --> this is a web server after pulling the image we can run th
 //" docker tag old_name new_name"--> we can even rename an already created image , 
 ex:--> "docker tag mywebapp:02 booyakah:03"
 
+
+//"  docker pull hellroh/project_vite123:02"--->to pull an image from docker we type this and then we can run that via--
+ " docker run -d --rm -p 5177:5173 hellroh/project_vite123:02 "
+
+
+ //"docker run -it --rm -v myvolume:/myapp/ d48d7ee6dddc"--> the "-v" is used to create a volume in which the data will be stored after we stop the program and "myvolume:/myapp/" this is the path where the data is stored, so basically this file created is outside the container and stays present even afte the image is stopped
+
+ //"docker volume ls"--> it gives the list of the volume created with the name and the driver address
+
+
+ //"docker volume inspect volume_name"-->it gives the details regarding the myvolume
+
+
+ //Bind Mount in docker volume
+ docker run -v /Users/mycomputer/projects/servers.txt:/myapp/servers.txt --rm image_id---->
+ using this we can bound the servers.txt present inside the container to be mounted to the original servers.txt file present in the local environment " /Users/mycomputer/projects/servers.txt "---->absolute path of the file in local environment and 
+ " /myapp/servers.txt  "---->address of the file present in the image created , 
+ by doing this if we make any changes in the file in the local environment then the change will be reflected in the image created and we are not needed to create the image everytime and also if we checek we 're not creating any volume as we're mounting the file from the local system 
+
+ //" .dockerignore "-->its similar to gitignore
+
+
+ //" Communication From/To containers "
+ 
+1)Working with api's-->
+ To fetch a data from the data from the outer world--
+
+in the below example picture we are installing an external package which is not there predefined in the docker in python , similar will be for the other applications
+
+//////////
+![Alt text](<Screenshot 2024-06-28 at 2.40.47 PM.png>)
+//////////
+
+after this the file will work
+
+2)"Communication between Containers and local db"
+
+/////////////
+the below screenshot shows the connection between a database and a python code 
+
+![Alt text](<Screenshot 2024-06-28 at 2.48.32 PM.png>)
+![Alt text](<Screenshot 2024-06-28 at 2.49.29 PM.png>) 
+![Alt text](<Screenshot 2024-06-28 at 2.49.37 PM.png>)
+
+//////////////so now if we'll try to connect then it will show an error , so to correct the error we have to make a change in the connection in the host name to ==>" host.docker.internal " ------
+
+![Alt text](<Screenshot 2024-06-28 at 2.54.12 PM.png>)
+///////////////
+
+
+3)Connection between one container and the other 
+ex:-->in this scenario we're connecting the mysql in one container and the python in the other container 
+//in the below code we're setting up the mysql in the terminal after pulling the code 
+docker run -d --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="userinfo" --name mysqldb mysql
+
+//"docker inspect mysqldb" ---->this code gives all the details regarding the container - "mysqldb"-it is the name of the container 
+
+now as we have to connect to the mysql present in a different container we will be using the ip address of the "mysqldb " container as the host name 
+
+////in the below code we have added the ip as the host name 
+![Alt text](<Screenshot 2024-06-28 at 4.47.33 PM.png>)
+//////////
+
+now we can build this container as well and if we'll try to connect them now it will work
+and they run the code successfully
+
+
+////////Docker Network
+
+docker network create my-net ------>it is used to create a network
+
+docker network ls --->gives the list of the network
+
+
+///docker run -d --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="userinfo" --name mysqld --network my-net mysql ///-----> in this command we're creating an image of the mysql and connecting it to the network and " --network my-net " using this command we have conneted it to the my-net database
+
+as we're using the network now we only have to give the name of the image in the place of host for connecting to the mysql
+
+///////
+![Alt text](<Screenshot 2024-06-28 at 5.09.32 PM.png>)
+//////
+
+
+and after creating the image after the above changes we habe to create a container for it using the below code
+"docker run -it --rm --network my-net image_id"
+
+
+
+
+
+//Docker Compose -->its a configuration file to manage multiple containers running on same machine...
