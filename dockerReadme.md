@@ -20,7 +20,7 @@ its optional)EXPOSE 5173 //we wrote here 5173 as this is the port on which this 
 
 //so basically what we did we created an image using the first 4 commands and when we run the image the project is runned by the last command
 
-//" docker build . " ---->//to create the image we wrote this in command line
+//" docker build . " ---->//to create the image we wrote this in command line , the dot at the end signifies that the docekr file based on which this image should be created is in this directory
 
 // " docker image ls " --->//to check the image we created we can type this in command line
 
@@ -229,13 +229,22 @@ docker run -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_RO
 
 docker run -d \
 -p 8081:8081 \
--e ME_MONGO_INITDB_ROOT_USERNAME=admin \
--e ME_MONGO_INITDB_ROOT_PASSWORD=password\
+-e ME_CONFIG_MONGODB_ADMINUSERNAME=admin \
+-e ME_CONFIG_MONGODB_ADMINPASSWORD=password \
 -e ME_CONFIG_MONGODB_SERVER=mongodb \
 --net mongo-network \
 --name mongo-express \
-mongo-express------> in this code in the name of the server we have to give the name of the mongodb image we created , so that this container can connect to the mongodb container , the "\" is used to prevent the code from breaking while we write the code in multiple lines in the terminal
+mongo-express
+------> in this code , in the name of the server we have to give the name of the mongodb image we created as in this case in "mongodb" , so that this container can connect to the mongodb container , the "\" is used to prevent the code from breaking while we write the code in multiple lines in the terminal
 
 <br/>
 \\\\\\
 
+//////
+mongo connection using the terminal
+docker run -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin  -e MONGO_INITDB_ROOT_PASSWORD=password --name mongodb --net mongo-network -d mongo
+//////
+
+////
+![Alt text](<Screenshot 2024-06-30 at 3.01.06 PM.png>)
+////
