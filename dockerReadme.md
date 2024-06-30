@@ -210,3 +210,8 @@ we can even run the services present in the docker-compose file one by one -->
 /////
 docker logs container_name --->logs all the info when we start the container
 ////
+
+
+//////
+docker run -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password -d mongo ---->we can give as many environment variables we want by using the "-e"
+//////
