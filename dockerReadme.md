@@ -219,3 +219,23 @@ docker logs container_name --->logs all the info when we start the container
 //////
 docker run -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password -d mongo ---->we can give as many environment variables we want by using the "-e"
 //////
+
+//////
+
+//////
+
+/////
+<br/>
+
+docker run -d \<br/>
+-p 8081:8081 \<br/>
+-e ME_MONGO_INITDB_ROOT_USERNAME=admin \<br/>
+-e ME_MONGO_INITDB_ROOT_PASSWORD=password\<br/>
+-e ME_CONFIG_MONGODB_SERVER=mongodb \<br/>
+--net mongo-network \<br/>
+--name mongo-express \<br/>
+mongo-express------> in this code in the name of the server we have to give the name of the mongodb image we created , so that this container can connect to the mongodb container , the "\" is sused to prevent the code from breaking
+
+<br/>
+\\\\\\
+
