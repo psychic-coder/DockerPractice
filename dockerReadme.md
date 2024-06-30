@@ -149,6 +149,10 @@ and they run the code successfully
 
 
 ////////Docker Network
+<br/>
+docker network create mongo-network///---->first we have to create a mongo network before connecting it to the network
+<br/>
+
 
 docker network create my-net ------>it is used to create a network
 
