@@ -227,14 +227,14 @@ docker run -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_RO
 /////
 <br/>
 
-docker run -d \<br/>
--p 8081:8081 \<br/>
--e ME_MONGO_INITDB_ROOT_USERNAME=admin \<br/>
--e ME_MONGO_INITDB_ROOT_PASSWORD=password\<br/>
--e ME_CONFIG_MONGODB_SERVER=mongodb \<br/>
---net mongo-network \<br/>
---name mongo-express \<br/>
-mongo-express------> in this code in the name of the server we have to give the name of the mongodb image we created , so that this container can connect to the mongodb container , the "\" is sused to prevent the code from breaking
+docker run -d \
+-p 8081:8081 \
+-e ME_MONGO_INITDB_ROOT_USERNAME=admin \
+-e ME_MONGO_INITDB_ROOT_PASSWORD=password\
+-e ME_CONFIG_MONGODB_SERVER=mongodb \
+--net mongo-network \
+--name mongo-express \
+mongo-express------> in this code in the name of the server we have to give the name of the mongodb image we created , so that this container can connect to the mongodb container , the "\" is used to prevent the code from breaking while we write the code in multiple lines in the terminal
 
 <br/>
 \\\\\\
